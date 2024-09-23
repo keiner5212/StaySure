@@ -26,7 +26,8 @@ public class HabitacionPersistance {
                     .pais(rs.getString("pais"))
                     .titulo(rs.getString("titulo"))
                     .ciudad(rs.getString("ciudad"))
-                    .descripcion(rs.getString("descripcion")).build()
+                    .descripcion(rs.getString("descripcion"))
+                    .servicios(rs.getString("servicios")).build()
                     );
                 } catch (Exception e) {
                     e.printStackTrace();

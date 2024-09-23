@@ -18,17 +18,18 @@ public class Habitacion implements Serializable, Table {
     private String pais;
     private String ciudad;
     private String imagen;
+    private String servicios;
 
     public static TableStatics TABLE_STATICS = new TableStatics() {
 
         @Override
         public String GetCreateQuery() {
-            return "INSERT INTO " + tableName() + " (titulo, descripcion, pais, ciudad, imagen) VALUES (?, ?, ?, ?, ?)";
+            return "INSERT INTO " + tableName() + " (titulo, descripcion, pais, ciudad, imagen, servicios) VALUES (?, ?, ?, ?, ?, ?)";
         }
 
         @Override
         public String GetSelectQuery() {
-            return "SELECT (titulo, descripcion, pais, ciudad, imagen) FROM " + tableName();
+            return "SELECT (titulo, descripcion, pais, ciudad, imagen, servicios) FROM " + tableName();
         }
 
         @Override
@@ -40,7 +41,7 @@ public class Habitacion implements Serializable, Table {
 
     @Override
     public List<Object> toJPA() {
-        return List.of(titulo, descripcion, pais, ciudad, imagen);
+        return List.of(titulo, descripcion, pais, ciudad, imagen, servicios);
     }
 
 }

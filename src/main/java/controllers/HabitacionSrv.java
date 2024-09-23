@@ -5,11 +5,20 @@
 package controllers;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import Core.Entities.Json;
+import Service.Entities.Habitacion;
+import Service.Logic.HabitacionService;
 
 /**
  *
@@ -42,6 +51,46 @@ public class HabitacionSrv extends HttpServlet {
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response)
                         throws ServletException, IOException {
+
+                JsonObject eljeison = Json.GetJsonFromRequestBody(request);
+
+                JsonArray services = eljeison.get("services_array").getAsJsonArray();
+                String serviceString = "";
+                if (services != null) {
+                for (JsonElement jsonElement : services) {
+                serviceString += jsonElement.getAsString() + ";";
+                }
+                } else {
+                return;
+                }
+
+                JsonElement titulo = eljeison.get("titulo");
+                if (titulo == null)
+                return;
+                JsonElement pais = eljeison.get("pais");
+                if (pais == null)
+                return;
+                JsonElement ciudad = eljeison.get("ciudad");
+                if (ciudad == null)
+                return;
+                JsonElement descripcion = eljeison.get("descripcion");
+                if (descripcion == null)
+                return;
+                JsonElement imageUrl = eljeison.get("imageUrl");
+                if (imageUrl == null)
+                return;
+
+                HabitacionService.saveHabitacion(Habitacion.builder()
+                .titulo(titulo.getAsString())
+                .pais(pais.getAsString())
+                .ciudad(ciudad.getAsString())
+                .descripcion(descripcion.getAsString())
+                .servicios(serviceString)
+                .imagen(imageUrl.getAsString())
+                .build());
+
+                request.setAttribute("mensaje", "Habitacion registrada");
+
         }
 
 }

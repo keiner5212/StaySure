@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+div, main, header, footer, html, input, button, textarea, select, p, h1, h2, h3, h4, h5, h6, ul, li, ol {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+}
+
+main {
+    height: calc(100vh - 60px);
+    display: flex;
+    overflow: auto;
+    
+    & .container {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        min-width: 45vw;
+    }
+}
+
+header{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    height: 60px;
+
+    & div{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-direction: row;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-group button {
+    width: 48%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 400;
+    transition: all 0.3s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.btn-group button:first-child {
+    background-color: #4CAF50;
+}
+
+.selected-services {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.service-chip {
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.service-chip span {
+    margin-right: 10px;
+}
+
+.service-chip button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: red;
+}
