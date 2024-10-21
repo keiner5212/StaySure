@@ -5,6 +5,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,6 +39,16 @@ public class HabitacionSrv extends HttpServlet {
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
                         throws ServletException, IOException {
+
+                JsonObject eljeison = Json.GetJsonFromRequestBody(request);
+
+                JsonElement token = eljeison.get("token");
+                if (token == null)
+                return;
+
+                List<Habitacion> habitaciones = HabitacionService.getHabitaciones(token.getAsString());
+
+                request.setAttribute("habitaciones", habitaciones);
         }
 
         /**
@@ -67,6 +78,9 @@ public class HabitacionSrv extends HttpServlet {
                 JsonElement titulo = eljeison.get("titulo");
                 if (titulo == null)
                 return;
+                JsonElement token = eljeison.get("token");
+                if (token == null)
+                return;
                 JsonElement pais = eljeison.get("pais");
                 if (pais == null)
                 return;
@@ -87,7 +101,7 @@ public class HabitacionSrv extends HttpServlet {
                 .descripcion(descripcion.getAsString())
                 .servicios(serviceString)
                 .imagen(imageUrl.getAsString())
-                .build());
+                .build(),token.getAsString());
 
                 request.setAttribute("mensaje", "Habitacion registrada");
 
