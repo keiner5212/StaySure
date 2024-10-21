@@ -1,3 +1,6 @@
+import { Cookies } from "../../constant/globals";
+import { getCookie } from "../utils/cookies";
+
 async function sendAjax(event) {
 	event.preventDefault()
 	const http = new XMLHttpRequest();
@@ -18,10 +21,13 @@ async function sendAjax(event) {
 		}
 	};
 
+	const token=getCookie(Cookies.JWT_TOKEN);
+
 	const data = JSON.stringify({
 		titulo,
 		descripcion,
 		pais,
+		token,
 		ciudad,
 		services_array,
 		imageUrl,
